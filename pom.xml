@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.paparazzi</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>PAPARAZZI - Parent</name>
+    <description>Parent pom.xml for PAPARAZZI applications</description>
+
+    <modules>
+        <module>database</module>
+    </modules>
+
+    <properties>
+        <!-- General properties -->
+        <!-- This property is used to obtain Checkstyle/PMD rulesets, user specific properties etc. It should point to location 
+            of 'pls-parent' project. This property must be overridden in child modules. -->
+        <rootProject.location>${project.basedir}</rootProject.location>
+
+        <profileName>${env.USERNAME}</profileName>
+
+		<!-- MySql driver -->
+        <mysql.jdbc.version>5.1.9</mysql.jdbc.version>
+		
+        <liquibase.version>2.0.5</liquibase.version>
+		<properties-maven-plugin.version>1.0-alpha-2</properties-maven-plugin.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>springsource-repo</id>
+            <name>SpringSource Repository</name>
+            <url>http://repo.springsource.org/release</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+				<plugin>
+					<groupId>org.liquibase</groupId>
+					<artifactId>liquibase-maven-plugin</artifactId>
+					<version>2.0.1</version>
+					<configuration>
+						<changeLogFile>${project.basedir}/src/main/structure/database.xml</changeLogFile>
+						<driver>com.mysql.jdbc.Driver</driver>
+						<url>jdbc:mysql://localhost/test</url>
+						<username>root</username>
+						<password>master</password>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+							<version>${mysql.jdbc.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				
+				<plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>properties-maven-plugin</artifactId>
+                    <version>${properties-maven-plugin.version}</version>
+                    <configuration>
+                        <files>
+                            <file>${rootProject.location}/config/profiles/default.properties</file>
+                            <file>${rootProject.location}/config/profiles/${profileName}.properties</file>
+                        </files>
+                        <quiet>true</quiet>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>read-project-properties</id>
+                            <inherited>true</inherited>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>read-project-properties</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+
+        <plugins>
+            <!-- To update version of this and all child projects -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- Generate maven reports -->
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+			<!-- MySql driver -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.jdbc.version}</version>
+			</dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <!-- Do not run liquibase and dbunit when integration tests are skipped -->
+            <activation>
+                <property>
+                    <name>skipTests</name>
+                </property>
+            </activation>
+            <properties>
+                <skipDbChanges>true</skipDbChanges>
+            </properties>
+        </profile>
+    </profiles>
+</project>
