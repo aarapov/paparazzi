@@ -9,7 +9,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.paparazzi</groupId>
     <artifactId>domains</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>PAPARAZZI - Domains module</name>

@@ -10,7 +10,6 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.paparazzi</groupId>
     <artifactId>services</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>PAPARAZZI - Services module</name>
