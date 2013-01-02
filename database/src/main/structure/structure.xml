@@ -1,0 +1,40 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="Artem">
+        <createTable tableName="BRANCHES">
+            <column name="ID" type="INT"/>
+            <column name="CITY" type="VARCHAR(32)"/>
+            <column name="ADDRESS" type="VARCHAR(64)"/>
+            <column name="NAME" type="VARCHAR(32)"/>
+            <column name="BRANCH_TYPE" type="VARCHAR(32)"/>
+        </createTable>
+        <addPrimaryKey tableName="BRANCHES" columnNames="ID" constraintName="PK_BRANCHES"/>
+        <addAutoIncrement tableName="BRANCHES" columnName="ID" columnDataType="INT"/>
+        <addNotNullConstraint tableName="BRANCHES" columnName="CITY" columnDataType="VARCHAR(32)"/>
+        <addNotNullConstraint tableName="BRANCHES" columnName="ADDRESS" columnDataType="VARCHAR(32)"/>
+        <addNotNullConstraint tableName="BRANCHES" columnName="NAME" columnDataType="VARCHAR(32)"/>
+        <addNotNullConstraint tableName="BRANCHES" columnName="BRANCH_TYPE" columnDataType="VARCHAR(32)"/>
+    </changeSet>
+
+    <changeSet id="2" author="Artem">
+        <createTable tableName="USERS">
+            <column name="ID" type="INT"/>
+            <column name="FIRST_NAME" type="VARCHAR(32)"/>
+            <column name="SECOND_NAME" type="VARCHAR(32)"/>
+            <column name="USERNAME" type="VARCHAR(32)"/>
+            <column name="PASSWORD" type="VARCHAR(32)"/>
+            <column name="ID_BRANCH" type="INT"/>
+        </createTable>
+        <addPrimaryKey tableName="USERS" columnNames="ID" constraintName="PK_BRANCHES"/>
+        <addAutoIncrement tableName="USERS" columnName="ID" columnDataType="INT"/>
+        <addNotNullConstraint tableName="USERS" columnName="FIRST_NAME" columnDataType="VARCHAR(32)"/>
+        <addNotNullConstraint tableName="USERS" columnName="SECOND_NAME" columnDataType="VARCHAR(32)"/>
+        <addNotNullConstraint tableName="USERS" columnName="USERNAME" columnDataType="VARCHAR(32)"/>
+        <addNotNullConstraint tableName="USERS" columnName="PASSWORD" columnDataType="VARCHAR(32)"/>
+        <addNotNullConstraint tableName="USERS" columnName="ID_BRANCH" columnDataType="INT"/>
+        <addForeignKeyConstraint constraintName="FK_USER_BRANCH" referencedTableName="BRANCHES" baseColumnNames="ID_BRANCH" 
+                                baseTableName="USERS" referencedColumnNames="ID"/>
+    </changeSet>
+</databaseChangeLog>

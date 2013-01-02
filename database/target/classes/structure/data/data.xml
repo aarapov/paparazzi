@@ -1,0 +1,24 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="Artem">
+        <sql splitStatements="true">
+            INSERT INTO BRANCHES (CITY, ADDRESS, NAME, BRANCH_TYPE)
+            VALUES ('Одесса', 'ул. Новосельского 17', 'Офис', 'Офис');
+            INSERT INTO BRANCHES (CITY, ADDRESS, NAME, BRANCH_TYPE)
+            VALUES ('Севастополь', 'КАКОЙ-ТО АДРЕС', 'СЦ. Севастополь', 'Филиал');
+            INSERT INTO BRANCHES (CITY, ADDRESS, NAME, BRANCH_TYPE)
+            VALUES ('Симферополь', 'КАКОЙ-ТО АДРЕС', 'СЦ. Симферополь', 'Филиал');
+            INSERT INTO BRANCHES (CITY, ADDRESS, NAME, BRANCH_TYPE)
+            VALUES ('Киев', 'КАКОЙ-ТО АДРЕС', 'СЦ. Киев', 'Филиал');
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="Artem">
+        <sql splitStatements="true">
+            INSERT INTO USERS (FIRST_NAME, SECOND_NAME, USERNAME, PASSWORD, ID_BRANCH)
+            VALUES ('Сергей', 'Подольский', 'admin', 'password', 1);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
