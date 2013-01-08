@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <display-name>Paparazzi - administrative console</display-name>
+
+    <servlet>
+        <servlet-name>admin-front-end</servlet-name>
+        <servlet-class>com.vaadin.terminal.gwt.server.ApplicationServlet</servlet-class>
+        <init-param>
+            <param-name>application</param-name>
+            <param-value>com.paparazzi.ui.admin.AdminApplication</param-value>
+            <description>Vaadin application class to start</description>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>admin-front-end</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>
