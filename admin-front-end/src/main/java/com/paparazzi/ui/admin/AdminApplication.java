@@ -1,5 +1,11 @@
 package com.paparazzi.ui.admin;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.paparazzi.domain.BranchEntity;
+import com.paparazzi.services.BranchService;
 import com.vaadin.Application;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -19,6 +25,9 @@ public class AdminApplication extends Application {
 
     public static final String APPLICATION_TITLE = "PAPARAZZI Administration console";
 
+    @Autowired
+    private BranchService service;
+
     @Override
     public void init() {
         VerticalLayout rootLayout = new VerticalLayout();
@@ -35,7 +44,8 @@ public class AdminApplication extends Application {
         top.setSpacing(true);
 
         Label label = new Label();
-        label.setCaption("Some label");
+        List<BranchEntity> list = service.findAll();
+        label.setCaption("Some label " + list.size());
         top.addComponent(label);
 
         rootWindow.addComponent(top);

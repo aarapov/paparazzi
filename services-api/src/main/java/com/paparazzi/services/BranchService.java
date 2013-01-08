@@ -1,4 +1,4 @@
-package com.paparazzi.services.api;
+package com.paparazzi.services;
 
 import java.util.List;
 

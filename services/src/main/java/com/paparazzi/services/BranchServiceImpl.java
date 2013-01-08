@@ -1,4 +1,4 @@
-package com.paparazzi.services.impl;
+package com.paparazzi.services;
 
 import java.util.List;
 
@@ -7,10 +7,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.common.collect.Lists;
 import com.paparazzi.dao.repository.BranchRepository;
 import com.paparazzi.domain.BranchEntity;
-import com.paparazzi.services.api.BranchService;
-import com.google.common.collect.Lists;
 
 /**
  * @author Artem Arapov
@@ -19,10 +18,10 @@ import com.google.common.collect.Lists;
 @Service("branchService")
 @Transactional
 @Repository
-public class BranchServiceImpl implements BranchService{
+public class BranchServiceImpl implements BranchService {
 
     @Autowired
-    private BranchRepository repository;
+    protected BranchRepository repository;
 
     @Override
     @Transactional(readOnly = true)
