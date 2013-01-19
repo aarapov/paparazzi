@@ -21,4 +21,18 @@
             VALUES ('Сергей', 'Подольский', 'admin', 'password', 1);
         </sql>
     </changeSet>
+	<changeSet id="3" author="Roman">
+        <sql splitStatements="true">
+            INSERT INTO CURRENCY (CURRENCY_NAME, SHORT_NAME, CURRENCY_VALUE, IS_CURRENT, CREATED_BY, CREATED_DATE)
+            VALUES ('Тугрик', 'ТГР', 1.85, false, 1, now());
+			INSERT INTO CURRENCY (CURRENCY_NAME, SHORT_NAME, CURRENCY_VALUE, IS_CURRENT, CREATED_BY, CREATED_DATE)
+            VALUES ('Евро', 'ЕВР', 2.35, false, 1, now());
+			INSERT INTO CURRENCY (CURRENCY_NAME, SHORT_NAME, CURRENCY_VALUE, IS_CURRENT, CREATED_BY, CREATED_DATE)
+            VALUES ('Доллар', 'ДОЛ', 4.234, false, 1, now());
+			INSERT INTO CURRENCY (CURRENCY_NAME, SHORT_NAME, CURRENCY_VALUE, IS_CURRENT, CREATED_BY, CREATED_DATE)
+            VALUES ('Купоны', 'КПН', 2.65, false, 1, now());
+			INSERT INTO CURRENCY (CURRENCY_NAME, SHORT_NAME, CURRENCY_VALUE, IS_CURRENT, CREATED_BY, CREATED_DATE)
+            VALUES ('Китайчик', 'КТЧК', 4.98, false, 1, now());
+        </sql>
+    </changeSet>
 </databaseChangeLog>

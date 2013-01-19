@@ -37,4 +37,33 @@
         <addForeignKeyConstraint constraintName="FK_USER_BRANCH" referencedTableName="BRANCHES" baseColumnNames="ID_BRANCH" 
                                 baseTableName="USERS" referencedColumnNames="ID"/>
     </changeSet>
+	
+	<changeSet id="3" author="Roman">
+		<createTable tableName="CURRENCY">
+            <column name="ID" type="INT"/>
+            <column name="CURRENCY_NAME" type="VARCHAR(32)"/>
+            <column name="SHORT_NAME" type="VARCHAR(32)"/>
+            <column name="CURRENCY_VALUE" type="DECIMAL(10,3)"/>
+            <column name="IS_CURRENT" type="BOOLEAN"/>
+            <column name="CREATED_BY" type="INT"/>
+			<column name="CREATED_DATE" type="DATE"/>
+			<column name="MODIFIED_BY" type="INT"/>
+			<column name="MODIFIED_DATE" type="DATE"/>
+        </createTable>
+		<addPrimaryKey tableName="CURRENCY" columnNames="ID" constraintName="PK_USERS"/>
+		<addAutoIncrement tableName="CURRENCY" columnName="ID" columnDataType="INT"/>
+		
+		<addNotNullConstraint tableName="CURRENCY" columnName="CURRENCY_NAME" columnDataType="VARCHAR(32)"/>
+		<addNotNullConstraint tableName="CURRENCY" columnName="SHORT_NAME" columnDataType="VARCHAR(32)"/>
+		<addNotNullConstraint tableName="CURRENCY" columnName="CURRENCY_VALUE" columnDataType="DECIMAL(10,3)"/>
+		<addNotNullConstraint tableName="CURRENCY" columnName="IS_CURRENT" columnDataType="BOOLEAN"/>
+		<addNotNullConstraint tableName="CURRENCY" columnName="CREATED_BY" columnDataType="INT"/>
+		<addNotNullConstraint tableName="CURRENCY" columnName="CREATED_DATE" columnDataType="DATE"/>
+		<addForeignKeyConstraint constraintName="FK_CREATED_BY" referencedTableName="USERS"  referencedColumnNames="ID"
+                                baseTableName="CURRENCY" baseColumnNames="CREATED_BY"/>
+		<addForeignKeyConstraint constraintName="FK_MODIFIED_BY" referencedTableName="USERS" baseColumnNames="MODIFIED_BY" 
+                                baseTableName="CURRENCY" referencedColumnNames="ID"/>
+		
+<!--		-->
+	</changeSet>
 </databaseChangeLog>
