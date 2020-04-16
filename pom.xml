@@ -54,7 +54,7 @@
         <targetJdk>${maven.compiler.compilerVersion}</targetJdk>
 
         <!-- Spring -->
-        <spring.version>3.1.3.RELEASE</spring.version>
+        <spring.version>5.2.5.RELEASE</spring.version>
         <spring-data-jpa.version>1.0.2.RELEASE</spring-data-jpa.version>
         <!-- Aspect J -->
         <aspectj.version>1.7.0</aspectj.version>
